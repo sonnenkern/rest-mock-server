@@ -1,6 +1,6 @@
 {
-  "name": "mock-server",
-  "version": "0.0.0",
+  "name": "rest-mock-server",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node node_modules/nodemon/bin/nodemon server.js"
@@ -11,5 +11,7 @@
     "express": "^4.16.3",
     "lowdb": "^1.0.0",
     "nodemon": "^1.18.3"
-  }
+  },
+  "author": "Alexander Fleming",
+  "license": "MIT"
 }
