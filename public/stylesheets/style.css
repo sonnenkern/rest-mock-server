@@ -1,0 +1,46 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.routes td {
+  padding-bottom: 10px;
+}
+
+.route {
+  margin-bottom: 10px;
+}
+
+.route__path {
+  margin-right: 20px;
+  font-size: 16px;
+}
+
+.route__tag {
+   color: #ffffff;
+   background-color: gray;
+   border-radius: 5px;
+   vertical-align: baseline;
+   font-size: 12px;
+   padding: 5px 10px;
+   white-space: nowrap;
+   line-height: 2.4;
+   margin: 3px;
+   text-transform: uppercase;
+}
+
+.route__tag--get {
+  background-color: #0081c2;
+}
+
+.route__tag--post {
+  background-color: #1e9504;
+}
+
+.route__tag--put {
+  background-color: #ff8c00;
+}
+
+.route__tag--delete {
+  background-color: #ff1522;
+}

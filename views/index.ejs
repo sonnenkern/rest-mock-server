@@ -1,0 +1,48 @@
+
+<html>
+
+<head>
+    <title>REST Mock Server</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+<h1>REST Mock Server</h1>
+<h2>Available routes</h2>
+
+<table class="routes">
+
+    <% params.forEach((route) => { %>
+
+    <tr class="route">
+        <td>
+            <span class="route__path">
+                <%= route.path %>
+            </span>
+        </td>
+        <td>
+            <% route.methods.forEach((method) => { %>
+
+                <% if (method === 'get') { %>
+                    <span class="route__tag route__tag--get"> <%= method %> </span>
+                <% } else if (method === 'post') { %>
+                    <span class="route__tag route__tag--post"> <%= method %> </span>
+                <% } else if (method === 'put') { %>
+                    <span class="route__tag route__tag--put"> <%= method %> </span>
+                <% } else if (method === 'delete') { %>
+                    <span class="route__tag route__tag--delete"> <%= method %> </span>
+                <% } else { %>
+                    <span class="route__tag"> <%= method %> </span>
+                <% } %>
+
+            <% }) %>
+        </td>
+    </tr>
+
+    <% }) %>
+
+</table>
+
+</body>
+
+</html>
