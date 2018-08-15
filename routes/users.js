@@ -1,3 +1,5 @@
+var faker = require('faker');
+
 module.exports = (app, db) => {
 
     app.route('/aaa')
@@ -6,7 +8,7 @@ module.exports = (app, db) => {
             db.set('user.name', 'typicode').write();
 
             res.status(200).send({
-                message: 'GET request successfulll!!!!'
+                message: "Hello " + faker.name.findName()
             });
         })
         .post(function (req, res) {
