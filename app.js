@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path');
 const fs=require("fs");
 const app = express();
+const faker = require('faker');
+const config = require("./config.json");
 
 const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
@@ -11,7 +13,7 @@ const adapter = new FileSync('db.json');
 const db = low(adapter);
 
 // Set some defaults (required if your JSON file is empty)
-db.defaults({ posts: [], user: {}, count: 0 }).write();
+//db.defaults({ company: {}, customers: {}, count: 0 }).write();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -39,11 +41,11 @@ function getIndexParams() {
     let params = [];
 
     //get all routes with the exception of root-route
-    const routes = app._router.stack.filter((r) => r.route && r.route.path !== '/');
+    const routes = app._router.stack.filter((r) => r.route && r.route.path !== '/').sort((a,b) => a.route.path>b.route.path);
     for(let r of routes) {
         params.push({
             path: r.route.path,
-            methods: Object.keys(r.route.methods)
+            methods: Object.keys(r.route.methods).filter((m) => m !== '_all')
         });
     }
 

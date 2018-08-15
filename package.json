@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/nodemon/bin/nodemon server.js"
+    "start": "node node_modules/nodemon/bin/nodemon server",
+    "db-reset": "node db-reset",
+    "db-reset:dynamic": "node db-reset dynamic"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
