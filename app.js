@@ -36,6 +36,10 @@ fs.readdirSync('./routes').forEach(function(file) {
     require(route)(app, db);
 });
 
+//set prefix
+if(config.prefix) {
+  app.use(config.prefix, app._router);
+}
 
 function getIndexParams() {
     let params = [];
