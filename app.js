@@ -54,7 +54,10 @@ function getIndexParams() {
         });
     }
 
-    return {params: params};
+    return {
+        prefix: config.prefix,
+        params: params
+    };
 }
 
 
