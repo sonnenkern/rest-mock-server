@@ -38,6 +38,7 @@ fs.readdirSync('./routes').forEach(function(file) {
 
 //set prefix
 if(config.prefix) {
+    console.log("Prefix: " + config.prefix);
   app.use(config.prefix, app._router);
 }
 
