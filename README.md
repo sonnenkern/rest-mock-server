@@ -48,7 +48,7 @@ db-reset.js - script for data base resetting
 
 /views - folder with EJS-template for project's home page
 /public - some static stuff for home page
-/routes - main folder for mocks
+/routes - main folder for REST mocks
 ```
 
 ## Home page
@@ -59,11 +59,12 @@ The home page is available at (starting with port 8500)
 http://loclahost:8500
 ```
 
+![Home page image](https://raw.githubusercontent.com/sonnenkern/rest-mock-server/master/public/homepage.png)
 
+The home page lists all available REST pathes and methods.
 
+## Data base reset
 
-
-Data base reset
 
 
 Usage
