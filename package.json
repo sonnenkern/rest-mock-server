@@ -1,6 +1,6 @@
 {
   "name": "rest-mock-server",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "node node_modules/nodemon/bin/nodemon server",
