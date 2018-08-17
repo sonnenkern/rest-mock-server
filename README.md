@@ -42,9 +42,9 @@ server.js - Node.js starter
 app.js - Express starter
 nodemon.json - Nodemon configuration
 config.json - project configuration
-db.json - data base file (lowdb)
-db-reset.json - default data base file for data base reset
-db-reset.js - script for data base resetting
+db.json - database file (lowdb)
+db-reset.json - default database file for database reset
+db-reset.js - script for database resetting
 
 /views - folder with EJS-template for project's home page
 /public - some static stuff for home page
@@ -63,11 +63,137 @@ http://loclahost:8500
 
 The home page lists all available REST pathes and methods.
 
-## Data base reset
+## Database reset
+
+There are two ways to reset the database.
+
+All data in db.json are replaced with data from db-reset.json.
+
+```
+npm start db-reset
+```
+
+Data for db.json will dynamically created with script (executes method initDB() from db-reset.js).
+
+```
+npm start db-reset:dynamic
+```
+
+## Usage
+
+All mock files are placed in `routes` folder. Many mock files are supported.
+
+Example:
+
+```
+/************* file routes/customer.js *********************/
+var faker = require('faker');
+
+module.exports = (app, db) => {
+    app.route('/customerCount')
+        .get(function (req, res) {
+            res.status(200).send({
+                customers: db.get('customers').size()
+            });
+        });
+
+    app.route('/customer/:id')
+        .all(function (req, res, next) {
+            let customerDB = db.get('customers').find({ id: req.params.id });
+            if(!customerDB.value()) {
+                res.status(404).send();
+                return;
+            }
+            req.customerDB = customerDB;
+            next();
+        })
+        .get(function (req, res) {
+            res.status(200).send(req.customerDB.value());
+        })
+        .put(function (req, res) {
+            req.customerDB.assign(req.body).write();
+            res.status(200).send();
+        })
+        .delete(function (req, res) {
+            db.get('customers').remove(req.customerDB.value()).write();
+            res.status(200).send();
+        });
+
+    app.route('/customer')
+        .post(function (req, res) {
+            db.get('customers').push(req.body).write();
+            res.status(200).send();
+        });
+
+    app.route('/customerAll')
+        .get(function (req, res) {
+            res.status(200).send(db.get('customers').value());
+        });
 
 
+};
+```
 
-Usage
+Some variables to explain: 
+db - the data base refernce ([lowdb](https://github.com/typicode/lowdb));
+faker - Faker reference ([Faker](https://github.com/fzaninotto/Faker)).
 
-Dependencies
+It is also possible to implement the mock methods, that don't operate with data base and just send json object back:
 
+```
+app.route('/helloWorld')
+    .get(function (req, res) {
+        res.status(200).send({
+            message: 'Hello World!'
+        });
+    });
+```
+
+Request body is available over `req.body`:
+
+```
+.put(function (req, res) {
+    req.customerDB.assign(req.body).write();
+    res.status(200).send();
+})
+```
+
+Request parameters are available over `req.params`
+
+```
+app.route('/customer/:id')
+        .get(function (req, res) {
+            console.log(req.params.id);
+            res.status(200).send();
+        })
+```
+
+Pseudo REST method `all` used for  common actions:
+
+```
+app.route('/customer/:id')
+        .all(function (req, res, next) {
+            let customerDB = db.get('customers').find({ id: req.params.id });
+            if(!customerDB.value()) {
+                res.status(404).send();
+                return;
+            }
+            req.customerDB = customerDB;
+            next();
+        })
+        .get(function (req, res) {
+            res.status(200).send(req.customerDB.value());
+        })
+        .put(function (req, res) {
+            req.customerDB.assign(req.body).write();
+            res.status(200).send();
+        })
+```
+
+## Main dependencies
+
+[Express](http://expressjs.com/)- web framework for Node
+[EJS](http://ejs.co/) - template engine for home page building
+[Faker](https://github.com/marak/Faker.js/) - fake data generator
+[lowdb](https://github.com/typicode/lowdb) - small local JSON based database
+[nodemon](https://github.com/remy/nodemon) - monitor for any changes in Node application and automatically restart the server

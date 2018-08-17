@@ -1,8 +1,5 @@
 var faker = require('faker');
 
-//db.set('user.name', 'typicode').write();
-
-
 module.exports = (app, db) => {
 
     app.route('/customerCount')
