@@ -135,8 +135,10 @@ module.exports = (app, db) => {
 ```
 
 Some variables to explain: 
-db - the data base refernce ([lowdb](https://github.com/typicode/lowdb));
-faker - Faker reference ([Faker](https://github.com/fzaninotto/Faker)).
+
+* db - the data base refernce ([lowdb](https://github.com/typicode/lowdb))
+* faker - Faker reference ([Faker](https://github.com/fzaninotto/Faker))
+
 
 It is also possible to implement the mock methods, that don't operate with data base and just send json object back:
 
@@ -192,8 +194,9 @@ app.route('/customer/:id')
 
 ## Main dependencies
 
-[Express](http://expressjs.com/)- web framework for Node
-[EJS](http://ejs.co/) - template engine for home page building
-[Faker](https://github.com/marak/Faker.js/) - fake data generator
-[lowdb](https://github.com/typicode/lowdb) - small local JSON based database
-[nodemon](https://github.com/remy/nodemon) - monitor for any changes in Node application and automatically restart the server
+* [Express](http://expressjs.com/)- web framework for Node
+* [EJS](http://ejs.co/) - template engine for home page building
+* [Faker](https://github.com/marak/Faker.js/) - fake data generator
+* [lowdb](https://github.com/typicode/lowdb) - small local JSON based database
+* [nodemon](https://github.com/remy/nodemon) - monitor for any changes in Node application and automatically restart the server
+
