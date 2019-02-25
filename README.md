@@ -56,7 +56,7 @@ db-reset.js - script for database resetting
 The home page is available at (starting with port 8500)
 
 ```
-http://loclahost:8500
+http://localhost:8500
 ```
 
 ![Home page image](https://raw.githubusercontent.com/sonnenkern/rest-mock-server/master/public/homepage.png)
