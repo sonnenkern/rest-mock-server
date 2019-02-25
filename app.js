@@ -18,6 +18,14 @@ const db = low(adapter);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+//CORS
+/*app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});*/
+
+
 //serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 
