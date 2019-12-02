@@ -70,13 +70,13 @@ There are two ways to reset the database.
 All data in db.json are replaced with data from db-reset.json.
 
 ```
-npm start db-reset
+npm run db-reset
 ```
 
 Data for db.json will dynamically created with script (executes method initDB() from db-reset.js).
 
 ```
-npm start db-reset:dynamic
+npm run db-reset:dynamic
 ```
 
 ## Usage
