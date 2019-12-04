@@ -4,6 +4,7 @@ const fs=require("fs");
 const app = express();
 const faker = require('faker');
 const config = require("./config.json");
+const cors = require('cors');
 
 const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
@@ -18,23 +19,8 @@ const db = low(adapter);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-//CORS-START
-/*
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, OPTIONS, DELETE");
-    next();
-});
-
-app.route('*').options(function (req, res, next) {
-    res.status(200).send();
-    next();
-});
-
-*/
-//CORS-END
-
+//enable cors for all origins
+app.use(cors());
 
 //serve static files
 app.use(express.static(path.join(__dirname, 'public')));
